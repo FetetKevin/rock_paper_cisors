@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Cisors eclaté JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <button class="resetBtn">Reset</button>
+        </div>
+    </div>
+
+    <div id="result">
+        <h3 class="result"></h3>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <img class="ia" src="img/qmark.jpg" alt="">
+            <h1>VS</h1>
+            <img class="player" src="img/qmark.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row-btn">
+            <h2>Choose your pokemon:</h2>
+            <ul>
+                <li class="rock">Rock</li>
+                <li class="paper">Paper</li>
+                <li class="cisors">Cisors</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script>
+        const options = ['rock', 'paper', 'cisors'];
+        const rockBtn = document.querySelector('.rock');
+        const paperBtn = document.querySelector('.paper');
+        const cisorsBtn = document.querySelector('.cisors');
+        const resetBtn = document.querySelector('.resetBtn');
+
+        resetBtn.addEventListener('click', reset);
+        rockBtn.addEventListener('click', choose);
+        paperBtn.addEventListener('click', choose);
+        cisorsBtn.addEventListener('click', choose);
+
+        function play(ia, player) {
+            let result='';
+            if (ia == 'rock' && player == 'paper') {
+                result = player +' beat '+ia+ ' Player wins !';
+            }
+            if (ia == 'rock' && player == 'cisors') {
+                result = ia +' beat '+player+ ' IA wins !';
+            }
+
+            if (ia == 'paper' && player == 'cisors') {
+                result = player +' beat '+ia+ ' Player wins !';
+            }
+            if (ia == 'paper' && player == 'rock') {
+                result = ia +' beat '+player+ ' IA wins !';
+            }
+
+            if (ia == 'cisors' && player == 'rock') {
+                result = player +' beat '+ia+ ' Player wins !';
+            }
+            if (ia == 'cisors' && player == 'paper') {
+                result = ia +' beat '+player+ ' IA wins !';
+            }
+
+            
+            // switch(ia == 'rock') {
+            //     case player == 'paper':
+            //         result = player +' beat '+ia+ ' [Player] wins !';
+            //         break;
+            //     case player == 'cisors':
+            //         result = ia +' beat '+player+ ' [IA] wins !';
+            //         break;
+            // }
+
+            // switch(ia == 'paper') {
+            //     case player == 'cisors':
+            //         result = player +' beat '+ia+ ' [Player] wins !';
+            //         break;
+            //     case player == 'rock':
+            //         result = ia +' beat '+player+ ' [IA] wins !';
+            //         break;
+            // }
+
+            // switch(ia == 'cisors') {
+            //     case player == 'rock':
+            //         result = player +' beat '+ia+ ' Player wiffghgfhns !';
+            //         break;
+            //     case player == 'paper':
+            //         result = ia +' beat '+player+ ' IA wgfhfghfghins !';
+            //         break;
+            // }
+
+            if(ia === player) {
+                result = 'ex-eaquo';
+            }
+            
+
+            document.querySelector('.result').innerHTML = result;
+        }
+
+        function choose() {
+            let nb = Math.floor(Math.random()*3);
+            let iaChoice = options[nb];
+            document.querySelector('.ia').setAttribute('src', 'img/'+ options[nb]+ '.jpg');
+            
+            let playerChoice = this.getAttribute('class');
+            document.querySelector('.player').setAttribute('src', 'img/' + playerChoice + '.jpg');
+            play(iaChoice, playerChoice);
+        }
+
+        function reset() {
+            const img = document.querySelectorAll('img');
+            for(let i = 0; i < img.length; i++) {
+                img[i].setAttribute('src', "img/qmark.jpg");
+            }  
+            document.querySelector('.result').innerHTML ='';
+        }
+    </script>
+</body>
+</html>
